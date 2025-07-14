@@ -3,7 +3,7 @@
 Specialized Multi-Task Optimizers (SMTOs) balance task learning in Multi-Task Learning by addressing issues like conflicting gradients and differing gradient norms, which hinder equal-weighted task training. However, recent critiques suggest that equally weighted tasks can achieve competitive results compared to SMTOs, arguing that previous SMTO results were influenced by poor hyperparameter optimization and lack of regularization. In this work, we evaluate these claims through an extensive empirical evaluation of SMTOs, including some of the latest methods, on more complex multi-task problems to clarify this behavior. Our findings indicate that SMTOs perform well compared to uniform loss and that fixed weights can achieve competitive performance compared to SMTOs. Furthermore, we demonstrate why uniform loss perform similarly to SMTOs in some instances.
 
 ## Setup
-Download all previously trained [data](https://drive.google.com/file/d/13ixXaNQsKQZFL05Q8vpWuqvLEYb9tXa3/view?usp=sharing) and save it on the same folder of the repository.
+Download and unzip all previously trained [data](https://drive.google.com/file/d/13ixXaNQsKQZFL05Q8vpWuqvLEYb9tXa3/view?usp=sharing) and save it on the same folder of the repository.
 
 Update `supervised_docker_run.sh` file with the correct location to the [Cityscapes](https://www.cityscapes-dataset.com/) dataset (with disparity labels). [MNIST](https://yann.lecun.com/exdb/mnist/) and [QM9](http://quantum-machine.org/datasets/) datasets are also used, but they are installed automatically. 
 
