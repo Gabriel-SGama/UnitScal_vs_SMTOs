@@ -223,8 +223,8 @@ def create_table_w_extra_data(
     new_columns = {
         r"\centering min \Delta \uparrow": np.min,
         r"\centering max \Delta \uparrow": np.max, 
-        r"\centering med \Delta \uparrow":np.median,
-        r"\centering std \Delta \downarrow":np.std,
+        r"\centering med \Delta \uparrow": np.median,
+        r"\centering std \Delta \downarrow": np.std,
         r"\centering avg \Delta \uparrow": np.mean, 
     }
 

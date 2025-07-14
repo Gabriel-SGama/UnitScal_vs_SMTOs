@@ -1,6 +1,7 @@
 import os
 import json
 import torch
+import numbers
 import argparse
 import numpy as np
 import matplotlib.pyplot as plt
@@ -163,6 +164,8 @@ for opt_index, (opt_label_plot, opt_label) in enumerate(zip(opt_labels_plot, opt
     data_df.loc[opt_label_plot, r"MR $\downarrow$"] = f"{np.round(final_mean_rank[opt_index], precision):.{precision}f}"
 
 colum_format = f"c*{total_n_columns + 2}"
+
+data_df = data_df.applymap(lambda x: eval_utils.precision_round(x, 4) if isinstance(x, numbers.Number) else x)
 
 print(f"\n-----------LATEX TABLE SKETCH {caption}-----------")
 print(data_df.to_latex(index=True, caption="Muiti task metric on " + caption + " dataset", column_format=colum_format))
