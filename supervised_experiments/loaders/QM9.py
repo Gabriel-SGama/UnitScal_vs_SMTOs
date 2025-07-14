@@ -169,50 +169,6 @@ class QM9_dataset(data.Dataset):
         return self.std[0, idx]
 
 
-# if __name__ == "__main__":
-# qm9_target_dict = {
-#     0: "mu",
-#     1: "alpha",
-#     2: "homo",
-#     3: "lumo",
-#     5: "r2",
-#     6: "zpve",
-#     7: "U0",
-#     8: "U",
-#     9: "H",
-#     10: "G",
-#     11: "Cv",
-# }
-
-# tasks = ["mu", "alpha", "homo", "lumo", "r2", "zpve", "U0", "U", "H", "G", "Cv"]
-# tasks = ["mu"]
-# dataset = QM9_dataset("datasets/QM9/", tasks)
-
-# DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-# data_loader = DataLoader(dataset.selected_dataset, batch_size=120, shuffle=True, num_workers=2)
-
-# dim = 64
-# model = Net(n_tasks=len(tasks), num_features=11, dim=dim).to(DEVICE)
-# optimizer = torch.optim.Adam(model.parameters())
-
-# scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, 0.95)
-
-# for epoch in tqdm(range(100)):
-#     mean_loss = 0
-#     print("len dataloader: ", len(data_loader))
-#     for j, batch in tqdm(enumerate(data_loader)):
-#         model.train()
-#         batch = batch.to(DEVICE)
-
-#         optimizer.zero_grad()
-
-#         out, features = model(batch, return_representation=True)
-
-#         losses = F.mse_loss(out, batch.y, reduction="none").mean()
-#         losses.backward()
-
-#         optimizer.step()
-#         scheduler.step()
-#         mean_loss += losses.item()
-
-#     print("mean_loss: ", mean_loss)
+if __name__ == "__main__":
+    tasks = ["mu", "alpha", "homo", "lumo", "r2", "zpve", "U0", "U", "H", "G", "Cv"]
+    dataset = QM9_dataset("datasets/QM9/", tasks)
