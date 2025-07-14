@@ -1,0 +1,5 @@
+#  Assuming that the parameters were optimized before
+CUDA_VISIBLE_DEVICES=0 python3.8 supervised_experiments/train_multi_task.py --optimizer baseline --dataset mnist --model lenet --tasks CL --lr 0.0025 --p 0.5 --weight_decay 0 --decay_lr --num_epochs 100 --n_runs 5 --start_index 5
+CUDA_VISIBLE_DEVICES=0 python3.8 supervised_experiments/train_multi_task.py --optimizer baseline --dataset mnist --model lenet --tasks CR --lr 0.005 --p 0.3 --weight_decay 0 --decay_lr --num_epochs 100 --n_runs 5 --start_index 5
+CUDA_VISIBLE_DEVICES=0 python3.8 supervised_experiments/train_multi_task.py --optimizer baseline --dataset mnist --model lenet --tasks RL --lr 0.0025 --p 0.0 --weight_decay 0 --decay_lr --num_epochs 100 --n_runs 5 --start_index 5
+CUDA_VISIBLE_DEVICES=0 python3.8 supervised_experiments/train_multi_task.py --optimizer baseline --dataset mnist --model lenet --tasks RR --lr 0.0025 --p 0.0 --weight_decay 0 --decay_lr --num_epochs 100 --n_runs 5 --start_index 5

@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=0 python3.8 supervised_experiments/train_multi_task.py --optimizer fixed_weights_edm --dataset cityscapes --model resnet18 --shape 512 256 --aug --n_classes 19 --tasks S_D_I --lr 0.001 --p 0.0 --losses_weights 0.8477072936709016 0.12926632153642761 0.023026384792670867 --weight_decay 0.0001 --decay_lr --batch_size 32 --num_epochs 150 --n_runs 3

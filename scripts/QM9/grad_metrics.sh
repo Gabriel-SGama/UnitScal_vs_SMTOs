@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=0 python3.8 supervised_experiments/train_multi_task.py --optimizer baseline --dataset QM9 --model mpnn --tasks mu_alpha_homo_lumo_r2_zpve_U0Atom_UAtom_HAtom_GAtom_Cv --lr 0.005 --weight_decay 0 --decay_lr --batch_size 120 --num_epochs 300 --n_runs 1 --analysis_test grad_metrics_correct

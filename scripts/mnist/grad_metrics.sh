@@ -1,0 +1,3 @@
+CUDA_VISIBLE_DEVICES=0 python3.8 supervised_experiments/train_multi_task.py --optimizer baseline --dataset mnist --model lenet --tasks CL_CR --lr 0.0025 --p 0.3 --weight_decay 0 --decay_lr --num_epochs 100 --n_runs 1 --analysis_test grad_metrics_correct
+CUDA_VISIBLE_DEVICES=0 python3.8 supervised_experiments/train_multi_task.py --optimizer baseline --dataset mnist --model lenet --tasks CL_RR --lr 0.001 --p 0.0 --weight_decay 0 --decay_lr --num_epochs 100 --n_runs 1 --analysis_test grad_metrics_correct
+CUDA_VISIBLE_DEVICES=0 python3.8 supervised_experiments/train_multi_task.py --optimizer baseline --dataset mnist --model lenet --tasks RL_RR --lr 0.001 --p 0.0 --weight_decay 0 --decay_lr --num_epochs 100 --n_runs 1 --analysis_test grad_metrics_correct

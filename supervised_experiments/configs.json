@@ -1,0 +1,23 @@
+{
+    "mnist": {
+        "path": "datasets/multimnist_dataset",
+        "n_val_runs": 5,
+        "n_best_runs": 10
+    },
+    "QM9": {
+        "path": "datasets/QM9",
+        "n_val_runs": 1,
+        "n_best_runs": 3
+    },
+
+    "cityscapes":{
+        "path": "datasets/",
+        "n_val_runs": 1,
+        "n_best_runs": 3
+    },
+
+    "utils": {
+        "model_storage": "data/saved_models/",
+        "results_storage": "data/saved_results/"
+    }
+}

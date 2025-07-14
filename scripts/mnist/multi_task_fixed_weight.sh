@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=0 python3.8 supervised_experiments/train_multi_task.py --optimizer fixed_weights_cagrad --dataset mnist --model lenet --tasks CL_RR --lr 0.001 --p 0.0 --weight_decay 0 --losses_weights 0.1006770466113158 0.8993229533886842 --decay_lr --num_epochs 100 --n_runs 10
