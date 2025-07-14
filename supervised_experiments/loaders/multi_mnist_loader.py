@@ -444,7 +444,7 @@ if __name__ == "__main__":
         return transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
 
     os.makedirs("datasets/", exist_ok=True)
-    os.makedirs("plots/mnist/", exist_ok=True)
+    os.makedirs("plots/mnist/debug/", exist_ok=True)
 
     mnist_dataset = MNIST(
         "datasets/multimnist_dataset/",
