@@ -23,7 +23,6 @@ nash_folder = (
 )
 
 tasks = nash_folder.split("/")[-3].split("_")
-print("tasks: ", tasks)
 
 tasks_labels = [
     r"$\mu$",
@@ -42,7 +41,6 @@ tasks_labels = [
 
 nash_files_path = glob(nash_folder + "*/val_0.pkl")
 nash_files_path = sorted(nash_files_path, key=lambda s: float(s.split("/")[-2].split("_")[1]))[::-1]
-print("sorted nash files path: ", nash_files_path)
 
 plt.rcParams.update(figsizes.icml2024_full(nrows=1, ncols=2))
 fig, axs = plt.subplots(1, len(nash_files_path), sharex=True, sharey=True)
