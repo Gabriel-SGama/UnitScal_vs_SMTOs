@@ -33,11 +33,12 @@ python3.8 supervised_experiments/loaders/QM9.py
 Download all previously trained [data]() and save it on the same folder of the repository.
 
 Run the evaluation scripts for the single-task reference and the SMTOs
+```
 python3.8 supervised_experiments/evaluation/eval_single_task.py 
 python3.8 supervised_experiments/evaluation/eval_multi_task.py
 python3.8 supervised_experiments/evaluation/eval_multi_task.py --analysis_test FwLe0.9
 python3.8 supervised_experiments/evaluation/eval_multi_task.py --analysis_test grad_metrics
-
+```
 
 Run visualization scripts:
 
