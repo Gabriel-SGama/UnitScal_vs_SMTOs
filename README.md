@@ -3,6 +3,9 @@
 Specialized Multi-Task Optimizers (SMTOs) balance task learning in Multi-Task Learning by addressing issues like conflicting gradients and differing gradient norms, which hinder equal-weighted task training. However, recent critiques suggest that equally weighted tasks can achieve competitive results compared to SMTOs, arguing that previous SMTO results were influenced by poor hyperparameter optimization and lack of regularization. In this work, we evaluate these claims through an extensive empirical evaluation of SMTOs, including some of the latest methods, on more complex multi-task problems to clarify this behavior. Our findings indicate that SMTOs perform well compared to uniform loss and that fixed weights can achieve competitive performance compared to SMTOs. Furthermore, we demonstrate why uniform loss perform similarly to SMTOs in some instances.
 
 ## Setup
+Download all previously trained [data](https://drive.google.com/file/d/13ixXaNQsKQZFL05Q8vpWuqvLEYb9tXa3/view?usp=sharing) and save it on the same folder of the repository.
+
+Update `supervised_docker_run.sh` file with the correct location to the [Cityscapes](https://www.cityscapes-dataset.com/) dataset (with disparity labels). [MNIST](https://yann.lecun.com/exdb/mnist/) and [QM9](http://quantum-machine.org/datasets/) datasets are also used, but they are installed automatically. 
 
 Install [docker](https://docs.docker.com/) and [nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html).
 
@@ -12,7 +15,6 @@ Build docker:
 ./supervised_experiments/build_supervised_docker.sh
 ```
 
-Update `supervised_docker_run.sh` file with the correct location to the [Cityscapes](https://www.cityscapes-dataset.com/) dataset (with disparity labels). [MNIST](https://yann.lecun.com/exdb/mnist/) and [QM9](http://quantum-machine.org/datasets/) datasets are also used, but they are installed automatically. 
 
 Docker run:
 
@@ -30,8 +32,6 @@ python3.8 supervised_experiments/loaders/QM9.py
 
 ## Replicating the article's visualization results
 
-Download all previously trained [data](https://drive.google.com/file/d/13ixXaNQsKQZFL05Q8vpWuqvLEYb9tXa3/view?usp=sharing) and save it on the same folder of the repository.
-
 Run the evaluation scripts for the single-task reference and the SMTOs
 ```
 python3.8 supervised_experiments/evaluation/eval_single_task.py 
@@ -42,7 +42,7 @@ python3.8 supervised_experiments/evaluation/eval_multi_task.py --analysis_test g
 
 Run visualization scripts:
 
-### MNIST
+#### MNIST
 ```
 python3.8 supervised_experiments/evaluation/show_latex_table.py --dataset mnist --model lenet --tasks CL_RR --rm_optimizers fixed_weights_cagrad fixed_weights_edm --save
 python3.8 supervised_experiments/evaluation/plot_results_w_all_weights.py --tasks CL_CR
@@ -51,7 +51,7 @@ python3.8 supervised_experiments/evaluation/plot_weights.py --dataset mnist
 python3.8 supervised_experiments/evaluation/show_latex_table.py --dataset mnist --model lenet --tasks CL_RR --eval_optimizers fixed_weights_cagrad
 ```
 
-### Cityscapes & Complexity Analysis
+#### Cityscapes & Complexity Analysis
 ```
 python3.8 supervised_experiments/evaluation/show_latex_table.py --dataset cityscapes --model resnet18 --tasks S_D_I --shape 512 256 --aug --eval_optimizers baseline auto_lambda cagrad cdtt edm famo imtl nash rotograd --save
 python3.8 supervised_experiments/evaluation/plot_grad_metrics.py
@@ -60,7 +60,7 @@ python3.8 supervised_experiments/evaluation/plot_weights.py --dataset cityscapes
 python3.8 supervised_experiments/evaluation/show_latex_table.py --dataset cityscapes --model resnet18 --tasks S_D_I --shape 512 256 --aug --eval_optimizers fixed_weights_edm
 ```
 
-### QM9
+#### QM9
 ```
 python3.8 supervised_experiments/evaluation/show_latex_table.py --dataset QM9 --model mpnn --tasks mu_alpha_homo_lumo_r2_zpve_U0Atom_UAtom_HAtom_GAtom_Cv --eval_optimizers baseline auto_lambda cagrad cdtt edm famo nash --save
 python3.8 supervised_experiments/evaluation/show_latex_table.py --dataset QM9 --model mpnn --tasks mu_alpha_homo_lumo_r2_zpve_U0Atom_UAtom_HAtom_GAtom_Cv --analysis_test FwLe0.9 --column half --save
