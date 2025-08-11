@@ -31,7 +31,14 @@ parser.add_argument("--n_classes", type=int, default=19)
 parser.add_argument("--aug", action="store_true")
 parser.add_argument("--analysis_test", type=str, default="")
 parser.add_argument("--column", type=str, default="full")
-parser.add_argument("--eval_optimizers", type=str, nargs="*", default=["all"], help="optimizers to evaluate", choices=["all"].extend(labels_opt.keys()))
+parser.add_argument(
+    "--eval_optimizers",
+    type=str,
+    nargs="*",
+    default=["all"],
+    help="optimizers to evaluate",
+    choices=["all"].extend(labels_opt.keys()),
+)
 parser.add_argument("--rm_optimizers", type=str, nargs="*", default=None, help="optimizers to remove from evaluation")
 parser.add_argument("--save", action="store_true", help="save the plots")
 args = parser.parse_args()
@@ -56,10 +63,6 @@ with open(
     f"supervised_experiments/evaluation/multi_task_best_results_val{separator}{args.analysis_test}.json"
 ) as multi_task_data_file:
     multi_task_val_data = json.load(multi_task_data_file)
-
-# To complete the get metrics function:
-# with open(f"supervised_experiments/evaluation/single_task_reference_val.json") as single_task_reference_file:
-#     single_task_reference = json.load(single_task_reference_file)
 
 with open(f"supervised_experiments/evaluation/single_task_reference_test.json") as single_task_reference_file:
     single_task_reference = json.load(single_task_reference_file)
@@ -146,12 +149,19 @@ mean_data_df, repetitive_tasks_df = eval_utils.create_table_w_extra_data(
 
 print(f"\n-----------LATEX MEAN MULTI-TASK METRIC TABLE SKETCH {caption}-----------")
 colum_format = "*{" + str(len(mean_data_df.columns) + 2) + "}{c}"
-print(mean_data_df.to_latex(index=True, caption="Mean Muiti-Task metric on " + caption + " dataset", column_format=colum_format))
+print(
+    mean_data_df.to_latex(
+        index=True, caption="Mean Muiti-Task metric on " + caption + " dataset", column_format=colum_format
+    )
+)
 
-print(f"\n-----------LATEX VARIOUS METRIC TABLE SKETCH {caption}-----------")
+print(f"\n-----------LATEX VARIOUS MULTI-TASK METRIC STATISTICS TABLE SKETCH {caption}-----------")
 colum_format = "*{" + str(len(repetitive_tasks_df.columns) + 2) + "}{c}"
-print(repetitive_tasks_df.to_latex(index=True, caption="Various metrics on " + caption + " dataset", column_format=colum_format))
-
+print(
+    repetitive_tasks_df.to_latex(
+        index=True, caption="Various metrics on " + caption + " dataset", column_format=colum_format
+    )
+)
 
 final_mean_rank = eval_utils.compute_mean_rank(
     tasks, data_df, best_metric_data_split_tasks, optimizers, df_ascending_columns, opt_labels_plot
