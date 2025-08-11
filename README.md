@@ -65,8 +65,16 @@ python3.8 supervised_experiments/evaluation/show_latex_table.py --dataset citysc
 python3.8 supervised_experiments/evaluation/show_latex_table.py --dataset QM9 --model mpnn --tasks mu_alpha_homo_lumo_r2_zpve_U0Atom_UAtom_HAtom_GAtom_Cv --eval_optimizers baseline auto_lambda cagrad cdtt edm famo nash --save
 python3.8 supervised_experiments/evaluation/show_latex_table.py --dataset QM9 --model mpnn --tasks mu_alpha_homo_lumo_r2_zpve_U0Atom_UAtom_HAtom_GAtom_Cv --analysis_test FwLe0.9 --column half --save
 python3.8 supervised_experiments/evaluation/show_nash_weights.py
-
 ```
+
+## Replicating the training results
+Scripts with **`_opt`** find optimal hyperparameters; scripts named **`_best`** run an optimal configuration multiple times.
+
+#### 1. Single-Task Models
+First, run `single_task_baseline_opt.sh` to find the best hyperparameters. Then, use `python3.8 supervised_experiments/evaluation/eval_single_task.py` to create reference `.json` files. For more robust results, run the best configuration multiple times (e.g., using a `best` script with `start_idx=1`) and then re-run `python3.8 supervised_experiments/evaluation/eval_single_task.py` to update the metrics.
+
+#### 2. Multi-Task Models
+After creating the single-task references, find the optimal multi-task hyperparameters using the appropriate `_opt_` scripts. Then, follow a similar pattern: run `python3.8 supervised_experiments/evaluation/eval_multi_task.py`, run the best-performing model multiple times, and re-run the `eval` script to finalize the results.
 
 ## SMTOs implemented
 [**Unit-Scal**](https://arxiv.org/abs/2201.04122): In Defense of the Unitary Scalarization for Deep Multi-Task Learning [[code](https://github.com/yobibyte/unitary-scalarization-dmtl)]
