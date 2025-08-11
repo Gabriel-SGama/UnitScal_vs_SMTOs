@@ -25,7 +25,7 @@ argparser.add_argument(
 )
 args = argparser.parse_args()
 
-plot_ratio = 0.5/0.3
+plot_ratio = 0.5 / 0.3
 fontsize = {
     "font.size": 8 * plot_ratio,
     "axes.labelsize": 8 * plot_ratio,
@@ -43,7 +43,7 @@ with open("supervised_experiments/configs.json") as config_params:
 if args.dataset == "mnist":
     file_path = "data/saved_results/analyse/save_weights/mnist/lenet/CL_RR/cagrad/lr_0.001_bs_256_dlr_True_p_0.0_cr_0.8/val_0.pkl"
 else:
-    file_path = "data/saved_results/analyse/save_weights/cityscapes_sh_512_256_aug_nc_19/resnet18/S_D_I/imtl/lr_0.001_bs_32_dlr_True_p_0.0_wd_0.0001/val_0.pkl"
+    file_path = "data/saved_results/analyse/save_weights/cityscapes_sh_512_256_aug_nc_19/resnet18/S_D_I/edm/lr_0.001_bs_32_dlr_True_p_0.0_wd_0.0001/val_0.pkl"
 
 file_data = torch.load(file_path)
 
@@ -64,19 +64,24 @@ weights_values = {f"{weight_key}_{t}": [] for t in tasks}
 momentum_weights_values = {f"{weight_key}_{t}": [] for t in tasks}
 for t in zip(tasks):
     t = t[0]
-    weights_values[weight_key+ "_" + t] = [
-        stats_dict[j][weight_key+ "_" + t] / normalizing_factor[j] for j in range(len(stats_dict))
+    weights_values[weight_key + "_" + t] = [
+        stats_dict[j][weight_key + "_" + t] / normalizing_factor[j] for j in range(len(stats_dict))
     ]
-    momentum_weights_values[weight_key+ "_" + t].append(weights_values[weight_key+ "_" + t][0])
+    momentum_weights_values[weight_key + "_" + t].append(weights_values[weight_key + "_" + t][0])
 
     for j in range(1, len(stats_dict)):
-        momentum_weights_values[weight_key+ "_" + t].append(
-            0.9 * momentum_weights_values[weight_key+ "_" + t][j - 1] + 0.1 * weights_values[weight_key+ "_" + t][j]
+        momentum_weights_values[weight_key + "_" + t].append(
+            0.9 * momentum_weights_values[weight_key + "_" + t][j - 1] + 0.1 * weights_values[weight_key + "_" + t][j]
         )
 
-    plot = plt.plot(weights_values[weight_key+ "_" + t], alpha=0.3, linewidth=plot_ratio, label=t)
-            
-    plt.plot(momentum_weights_values[weight_key+ "_" + t], color=plot[0].get_color(), linestyle="dotted", linewidth=plot_ratio)
+    plot = plt.plot(weights_values[weight_key + "_" + t], alpha=0.3, linewidth=plot_ratio, label=t)
+
+    plt.plot(
+        momentum_weights_values[weight_key + "_" + t],
+        color=plot[0].get_color(),
+        linestyle="dotted",
+        linewidth=plot_ratio,
+    )
 
 # title_name = "MNIST - CAGrad" if "mnist" in file_path else "Cityscapes - EDM"
 # plt.title(title_name)
